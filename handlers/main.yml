@@ -1,0 +1,4 @@
+---
+# handlers file for Apache-Sqoop
+- name: Run BashRC
+  shell: "source {{  ansible_env.HOME  }}/.bashrc"
