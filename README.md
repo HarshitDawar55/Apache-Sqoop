@@ -19,7 +19,7 @@ Role Variables
 Dependencies
 ------------
 
-Nil
+* Nil
 
 Example Playbook
 ----------------
