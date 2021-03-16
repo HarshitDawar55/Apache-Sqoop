@@ -1,0 +1,25 @@
+---
+# tasks file for Apache-Sqoop
+- name: Creating a Sqoop Download Directory!
+  file:
+    state: directory
+    path: "{{ SQOOP_DIRECTORY }}"
+
+- name: Downloading the Sqoop Software!
+  get_url:
+    url: https://mirrors.estointernet.in/apache/sqoop/1.4.7/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
+    dest: "{{ SQOOP_DIRECTORY }}/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz"
+
+- name: Extracting the Compressed File!
+  unarchive:
+    src: "{{ SQOOP_DIRECTORY }}/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz"
+    dest: "{{ SQOOP_DIRECTORY }}/"
+    remote_src: yes
+
+- name: Confiuring the Hadoop Environmental Variables!
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      export SQOOP_HOME="{{ SQOOP_DIRECTORY }}/sqoop-1.4.7.bin__hadoop-2.6.0"
+      export PATH=$PATH:$SQOOP_HOME/bin 
+  notify: Run BashRC
