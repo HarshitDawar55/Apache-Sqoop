@@ -16,10 +16,10 @@
     dest: "{{ SQOOP_DIRECTORY }}/"
     remote_src: yes
 
-- name: Confiuring the Hadoop Environmental Variables!
+- name: Confiuring the Sqoop Environmental Variables!
   blockinfile:
     path: ~/.bashrc
-    insertafter: "EOF"
+    marker: "\n# {mark} Sqoop Configuration by Ansible!"
     block: |
       export SQOOP_HOME="{{ SQOOP_DIRECTORY }}/sqoop-1.4.7.bin__hadoop-2.6.0"
       export PATH=$PATH:$SQOOP_HOME/bin
